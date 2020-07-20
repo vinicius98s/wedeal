@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"wedeal/schema"
 
 	"github.com/graphql-go/graphql"
@@ -27,14 +28,21 @@ func SetupRouter() {
 		log.Fatalf("failed to create new Schema: %v", err)
 	}
 
+	isDevEnv := os.Getenv("ENV") == "development"
+
 	h := handler.New(&handler.Config{
 		Schema:   &schema,
-		Pretty:   true,
-		GraphiQL: true,
+		Pretty:   isDevEnv,
+		GraphiQL: isDevEnv,
 	})
 
-	fmt.Println("Running on port 8080")
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+
+	fmt.Printf("Running on port %s\n", port)
 
 	http.Handle("/graphql", h)
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(":"+port, nil)
 }

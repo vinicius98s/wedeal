@@ -14,4 +14,10 @@
 # Dependency directories (remove the comment below to include it)
 # vendor/
 
+# Temp folder
 tmp/*
+
+# Env files
+.env
+.env.*
+!.env.example
