@@ -5,11 +5,10 @@ import (
 )
 
 // GetQueryFields generates the fields for the user module
-func GetQueryFields() map[string]*graphql.Field {
+func GetQueryFields() graphql.Fields {
 	getUserQuery := GetUserQuery()
-	usersMap := make(map[string]*graphql.Field)
 
-	usersMap["user"] = getUserQuery
-
-	return usersMap
+	return graphql.Fields{
+		"user": getUserQuery,
+	}
 }

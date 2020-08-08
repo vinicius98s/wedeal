@@ -7,9 +7,8 @@ import (
 // GetMutationFields return all fields for users mutations
 func GetMutationFields() graphql.Fields {
 	addUserMutation := AddUserField()
-	mutations := make(map[string]*graphql.Field)
 
-	mutations["addUser"] = addUserMutation
-
-	return mutations
+	return graphql.Fields{
+		"addUser": addUserMutation,
+	}
 }
