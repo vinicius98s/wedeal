@@ -7,22 +7,12 @@ import (
 	"os"
 	"wedeal/schema"
 
-	"github.com/graphql-go/graphql"
 	"github.com/graphql-go/handler"
 )
 
-// SetupRouter : setup the routing
+// SetupRouter setups routing for the application
 func SetupRouter() {
-	fields := graphql.Fields{
-		"hello": &graphql.Field{
-			Type: graphql.String,
-			Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-				return "world", nil
-			},
-		},
-	}
-
-	schema, err := schema.CreateSchema(fields)
+	schema, err := schema.CreateSchema()
 
 	if err != nil {
 		log.Fatalf("failed to create new Schema: %v", err)
