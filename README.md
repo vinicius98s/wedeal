@@ -13,11 +13,18 @@ choco install make
 make install
 ```
 
+If you are on a Unix based os, then you can just:
+
+```sh
+make install
+```
+
 ### Getting started
 
 You can run `make dev` to get the project running.
 
 ```sh
-
 make dev
 ```
+
+Once you've started the server you should see a message like `Running on port 8080`, then if you hit the [http://localhost:8080/graphql](http://localhost:8080/graphql) url, you should be able to see the Graphql Playground
