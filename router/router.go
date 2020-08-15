@@ -34,5 +34,9 @@ func SetupRouter() {
 	fmt.Printf("Running on port %s\n", port)
 
 	http.Handle("/graphql", h)
-	http.ListenAndServe(":"+port, nil)
+
+	e := http.ListenAndServe(":"+port, nil)
+	if e != nil {
+		log.Fatal("Failed to run server", e)
+	}
 }
