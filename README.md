@@ -2,7 +2,7 @@
 
 ### Pre requisites
 
-You must have at least Go 1.11 installed
+You must have docker-compose installed in your machine.
 
 ### Installing dependencies:
 
@@ -13,11 +13,7 @@ choco install make
 make install
 ```
 
-If you are on a Unix based os, then you can just:
-
-```sh
-make install
-```
+If you are on a Unix based OS it's probably already installed.
 
 ### Getting started
 
@@ -27,4 +23,4 @@ You can run `make dev` to get the project running.
 make dev
 ```
 
-Once you've started the server you should see a message like `Running on port 8080`, then if you hit the [http://localhost:8080/graphql](http://localhost:8080/graphql) url, you should be able to see the Graphql Playground
+Once you've started the server you should see a message like `Running on port 8080`, then if you hit the [http://localhost:8080/graphql](http://localhost:8080/graphql) url you should be able to see the Graphql Playground.

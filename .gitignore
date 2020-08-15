@@ -15,7 +15,7 @@
 # vendor/
 
 # Temp folder
-tmp/*
+tmp/
 
 # Env files
 .env

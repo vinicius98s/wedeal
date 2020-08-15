@@ -1,5 +1,2 @@
 dev:
-	air -d
-
-install:
-	go mod download
+	docker-compose -f ./docker/dev.docker-compose.yml up
