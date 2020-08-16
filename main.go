@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"wedeal/database"
 	"wedeal/router"
 
 	"github.com/joho/godotenv"
@@ -10,8 +11,9 @@ import (
 func main() {
 	err := godotenv.Load()
 	if err != nil {
-		log.Fatal("Error loading .env file")
+		log.Fatalf("Error loading .env file: %v\n", err)
 	}
 
+	database.Connect()
 	router.SetupRouter()
 }

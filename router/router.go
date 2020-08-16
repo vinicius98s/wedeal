@@ -37,6 +37,6 @@ func SetupRouter() {
 
 	e := http.ListenAndServe(":"+port, nil)
 	if e != nil {
-		log.Fatal("Failed to run server", e)
+		log.Fatalf("Failed to run http server: %v\n", e)
 	}
 }

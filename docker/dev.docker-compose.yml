@@ -2,8 +2,8 @@ version: "3.8"
 
 services:
   app:
-    container_name: wedeal_dev
-    image: wedeal_dev
+    container_name: wedeal-dev
+    image: wedeal-dev
     build:
       context: ../
       dockerfile: ./docker/dev.Dockerfile
@@ -13,3 +13,12 @@ services:
       - 8080:8080
     env_file:
       - ../.env
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo
+    ports:
+      - 27017:27017
+    logging:
+      driver: none

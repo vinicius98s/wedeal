@@ -13,7 +13,7 @@ func GetUserQuery() *graphql.Field {
 		Description: "Get user by id or email",
 		Args: graphql.FieldConfigArgument{
 			"id": &graphql.ArgumentConfig{
-				Type: graphql.Int,
+				Type: graphql.String,
 			},
 			"email": &graphql.ArgumentConfig{
 				Type: graphql.String,
@@ -21,15 +21,15 @@ func GetUserQuery() *graphql.Field {
 		},
 		Resolve: func(p graphql.ResolveParams) (interface{}, error) {
 			var users []user.User
-			user := user.User{ID: 1, Name: "Vinicius", Email: "vinicius@email.com", Password: "vinicius"}
+			user := user.User{ID: "1", Name: "Vinicius", Email: "vinicius@email.com", Password: "vinicius"}
 			users = append(users, user)
 
 			email, emailOk := p.Args["email"].(string)
-			id, idOk := p.Args["id"].(int)
+			id, idOk := p.Args["id"].(string)
 
 			if idOk || emailOk {
 				for _, u := range users {
-					if int(u.ID) == id || u.Email == email {
+					if u.ID == id || u.Email == email {
 						return u, nil
 					}
 				}
