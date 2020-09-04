@@ -4,11 +4,8 @@ import (
 	"github.com/graphql-go/graphql"
 )
 
-// GetQueryFields generates the fields for the user module
-func GetQueryFields() graphql.Fields {
-	getUserQuery := GetUserQuery()
-
-	return graphql.Fields{
-		"user": getUserQuery,
-	}
+// Fields gets all query fields for the user module
+var Fields = graphql.Fields{
+	"user":  GetUser,
+	"users": ListUsers,
 }
