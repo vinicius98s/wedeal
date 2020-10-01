@@ -10,6 +10,7 @@ import (
 	"github.com/graph-gophers/dataloader"
 )
 
+// ListCategories is responsible for listing categories
 func (client *Client) ListCategories(categoryIDs []uint) ([]c.Category, error) {
 	var categories []c.Category
 	for _, categoryID := range categoryIDs {
@@ -19,6 +20,7 @@ func (client *Client) ListCategories(categoryIDs []uint) ([]c.Category, error) {
 	return categories, nil
 }
 
+// GetCategoryBatchFn is gatters all categories and batch them into a function
 func GetCategoryBatchFn(ctx context.Context, keys dataloader.Keys) []*dataloader.Result {
 	var results []*dataloader.Result
 	handleError := func(err error) []*dataloader.Result {
