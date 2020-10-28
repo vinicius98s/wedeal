@@ -6,36 +6,34 @@ import (
 	"github.com/graphql-go/graphql"
 )
 
-// GetUserQuery generates the fields for the user module
-func GetUserQuery() *graphql.Field {
-	return &graphql.Field{
-		Type:        user.UserType,
-		Description: "Get user by id or email",
-		Args: graphql.FieldConfigArgument{
-			"id": &graphql.ArgumentConfig{
-				Type: graphql.String,
-			},
-			"email": &graphql.ArgumentConfig{
-				Type: graphql.String,
-			},
+// GetUser query
+var GetUser = &graphql.Field{
+	Type:        user.UserType,
+	Description: "Get user by id or email",
+	Args: graphql.FieldConfigArgument{
+		"id": &graphql.ArgumentConfig{
+			Type: graphql.String,
 		},
-		Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-			var users []user.User
-			user := user.User{ID: "1", Name: "Vinicius", Email: "vinicius@email.com", Password: "vinicius"}
-			users = append(users, user)
+		"email": &graphql.ArgumentConfig{
+			Type: graphql.String,
+		},
+	},
+	Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+		var users []user.User
+		user := user.User{ID: "1", Name: "Vinicius", Email: "vinicius@sales.com", Password: "vinicius"}
+		users = append(users, user)
 
-			email, emailOk := p.Args["email"].(string)
-			id, idOk := p.Args["id"].(string)
+		email, emailOk := p.Args["email"].(string)
+		id, idOk := p.Args["id"].(string)
 
-			if idOk || emailOk {
-				for _, u := range users {
-					if u.ID == id || u.Email == email {
-						return u, nil
-					}
+		if idOk || emailOk {
+			for _, u := range users {
+				if u.ID == id || u.Email == email {
+					return u, nil
 				}
 			}
+		}
 
-			return nil, nil
-		},
-	}
+		return nil, nil
+	},
 }

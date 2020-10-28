@@ -6,17 +6,9 @@ import (
 	"github.com/graphql-go/graphql"
 )
 
-// GetMutationFields gathers all packages mutations fields
-func GetMutationFields() graphql.Fields {
-	mutationFields := make(map[string]*graphql.Field)
-	userMutationFields := u.GetMutationFields()
-
-	for k, v := range userMutationFields {
-		mutationFields[k] = v
-	}
-
-	return mutationFields
+func getMutationFields() graphql.Fields {
+	return MergeFields(u.Mutations)
 }
 
 // Mutation exports the Mutation graphql object
-var Mutation = GetMutationFields()
+var Mutation = getMutationFields()

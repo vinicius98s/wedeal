@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 	"wedeal/database"
-	"wedeal/router"
+	"wedeal/server"
 
 	"github.com/joho/godotenv"
 )
@@ -14,6 +14,11 @@ func main() {
 		log.Fatalf("Error loading .env file: %v\n", err)
 	}
 
-	database.Connect()
-	router.SetupRouter()
+	db, err := database.Connect()
+
+	if err != nil {
+		log.Fatalf("Failed to connect to database: %v\n", err)
+	}
+
+	server.Init(db)
 }
